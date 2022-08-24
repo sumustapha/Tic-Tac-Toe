@@ -1,0 +1,185 @@
+:root{
+    --clr-bg:white;
+    --clr-marker:black;
+    --clr-win:limegreen;
+    --clr-lose:red;
+    --board-size:600px;
+}
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,html{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header{
+    font-size: 5vh;
+}
+
+.main{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-bg);
+}
+
+    .gameBoard{
+        height: var(--board-size);
+        width: var(--board-size);
+        border: 3px solid var(--clr-bg);
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:"c1 c2 c3"
+                            "c4 c5 c6"
+                            "c7 c8 c9";
+    }
+
+        .cell{
+            border: 1px solid var(--clr-marker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .x::before, .x::after{
+            content: "";
+            display: block;
+            height: 200px;
+            width: 10px;
+            background-color: var(--clr-marker);
+            position: absolute;
+        }
+
+        .x::before{
+            transform: rotate(45deg);
+        }
+
+        .x::after{
+            transform: rotate(-45deg);
+
+        }
+
+        .o::before, .o::after{
+            content: "";
+            display: block;
+            height: 180px;
+            width: 180px;
+            border-radius: 90px;
+            background-color: var(--clr-marker);
+            position: absolute;
+        }
+
+        .o::before{
+            background-color: var(--clr-marker);
+        }
+
+        .o::after{
+            background-color: var(--clr-bg);
+            transform: scale(0.9);
+
+        }
+        
+
+        [data-cell = "1"]{
+            grid-area: c1;
+            border-left: var(--clr-bg);
+            border-top: var(--clr-bg);
+        }
+
+        [data-cell = "2"]{
+            grid-area: c2;
+            border-top: var(--clr-bg);
+        }
+
+        [data-cell = "3"]{
+            grid-area: c3;
+            border-top: var(--clr-bg);
+            border-right: var(--clr-bg);
+        }
+
+        [data-cell = "4"]{
+            grid-area: c4;
+            border-left: var(--clr-bg);
+        }
+
+        [data-cell = "5"]{
+            grid-area: c5;
+        }
+
+        [data-cell = "6"]{
+            border-right: var(--clr-bg);
+            grid-area: c6;
+        }
+
+        [data-cell = "7"]{
+            grid-area: c7;
+            border-left: var(--clr-bg);
+            border-bottom: var(--clr-bg);
+        }
+
+        [data-cell = "8"]{
+            grid-area: c8;
+            border-bottom: var(--clr-bg);
+
+        }
+
+        [data-cell = "9"]{
+            grid-area: c9;
+            border-right: var(--clr-bg);
+            border-bottom: var(--clr-bg);
+        }
+
+    .modal{
+        padding: 8rem;
+        display: none;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .winnerName{
+        font-size: 3em;
+        color: white;
+    }
+
+    #restart{
+        margin-left: 3rem;
+        background-color: black;
+        color: white;
+        outline: none;
+        width: 8rem;
+        height: 3rem;
+        border-radius: 8px;
+        border: 1px solid white;
+        box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
+
+    }
+
+    #restart:hover{
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        transform: scale(1.05);
+    }
+
+    .modalContent{
+        display: flex;
+        height: 10vh;
+        align-items: center;
+    }
