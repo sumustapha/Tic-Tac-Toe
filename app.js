@@ -7,8 +7,18 @@ const gameBoard = (() => {
 
     let mode = true
   
-    player1 = player('Kawu','x')
-    player2 = player('cpu','o')
+    player1 = player('Player 1','x')
+    player2 = player('Computer','o')
+
+    const modetoggle = document.getElementById('mode')
+
+    modetoggle.addEventListener('click',editNames)
+
+    function editNames(){
+        mode ? player2.name = 'Player 2' : 'Computer'
+        mode ? modetoggle.innerText = 'Switch to 1 player' : modetoggle.innerText = 'Switch to 2 players'
+        mode = !mode
+    }
   
     const swapTurns = () => {
         next = !next
@@ -33,13 +43,13 @@ const gameBoard = (() => {
   
     const cells = document.querySelectorAll('.cell')
     const modal = document.querySelector('.modal')
-    cells.forEach(cell => cell.addEventListener('click', getIndex, {once: true}))
+    cells.forEach(cell => cell.addEventListener('click', getIndex))
         // if(!isnotAvaible(freeSpot)) return
         // cells[freeSpot-1].classList.add(player2.marker)
         // board = board.filter(value => value !== freeSpot)
 
     function playRound(index){
-        if(!isAvaible) return
+        if(!isAvaible(index)) return
         let marker = next ? player1.marker : player2.marker
         cells[index-1].classList.add(marker)
         board = board.filter(value => value !== index)
@@ -86,6 +96,15 @@ const gameBoard = (() => {
         else {
            winnerName.innerText = (winnerMarker === player1.marker) ? `${player1.name} wins` : `${player2.name} wins` 
         }
+
+        const reset = document.querySelector('#restart')
+        reset.addEventListener('click', ()=>{
+            board = ['1','2','3','4','5','6','7','8','9']
+            modal.style.display = 'none'
+            cells.forEach(cell => cell.classList.contains('x') ? cell.classList.remove('x') : 
+                                  cell.classList.contains('o') ? cell.classList.remove('o') : console.log("")
+                                )           
+        })
 
     }
     
