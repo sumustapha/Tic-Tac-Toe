@@ -25,6 +25,8 @@ body,html{
     font-size: 5vmin;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .main{
@@ -92,7 +94,6 @@ body,html{
         .o::after{
             background-color: var(--clr-bg);
             transform: scale(0.9);
-
         }
         
 
@@ -186,6 +187,7 @@ body,html{
     #mode{
         width: 10rem;
         background-color: black;
+        height: clamp(5vmin, 3rem, 3vh);
         color: white;
     }
 
