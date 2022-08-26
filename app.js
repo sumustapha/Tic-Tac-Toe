@@ -100,6 +100,7 @@ const gameBoard = (() => {
         const reset = document.querySelector('#restart')
         reset.addEventListener('click', ()=>{
             board = ['1','2','3','4','5','6','7','8','9']
+            next = true
             modal.style.display = 'none'
             cells.forEach(cell => cell.classList.contains('x') ? cell.classList.remove('x') : 
                                   cell.classList.contains('o') ? cell.classList.remove('o') : console.log("")
